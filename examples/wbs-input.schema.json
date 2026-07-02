@@ -1,0 +1,137 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/humhon-labs/wbsgantt-mcp/blob/main/examples/wbs-input.schema.json",
+  "title": "wbsgantt WBS Input Document (v1)",
+  "description": "Input for the import_wbs_project tool. Creates a new project and WBS tree in one call.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "mode", "root"],
+  "properties": {
+    "schema_version": { "const": 1 },
+    "mode": {
+      "description": "Use 'project' to create a project.",
+      "enum": ["project", "template"]
+    },
+    "meta": { "$ref": "#/$defs/meta" },
+    "root": { "$ref": "#/$defs/node" }
+  },
+  "$defs": {
+    "meta": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Project metadata. For 'project' mode, providing a code is recommended (unique within the tenant).",
+      "properties": {
+        "code": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "Unique project code, e.g. DEMO-WEB."
+        },
+        "name": { "type": "string" },
+        "industry": { "type": "string" },
+        "description": { "type": "string" },
+        "source_locale": { "enum": ["ko", "en"], "default": "ko" },
+        "currency": {
+          "type": "string",
+          "minLength": 3,
+          "maxLength": 3,
+          "default": "KRW",
+          "description": "ISO 4217 3-letter code."
+        }
+      }
+    },
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1, "maxLength": 255 },
+        "ref": {
+          "type": "string",
+          "maxLength": 64,
+          "pattern": "^[A-Za-z0-9_-]+$",
+          "description": "Temporary identifier within the tree. Required on any node that is a predecessor target or that declares predecessors."
+        },
+        "node_type": {
+          "enum": ["phase", "deliverable", "work_package", "milestone"],
+          "description": "Auto-derived from structure if omitted (summary when it has children, work package otherwise)."
+        },
+        "is_milestone": { "type": "boolean", "default": false },
+        "duration_days": { "type": "integer", "minimum": 0, "default": 0 },
+        "weight": {
+          "type": ["number", "null"],
+          "minimum": 0,
+          "maximum": 100,
+          "description": "Omit (null) to auto-distribute evenly among siblings."
+        },
+        "start_planned": {
+          "type": ["string", "null"],
+          "format": "date",
+          "description": "YYYY-MM-DD. Sets a manual schedule when provided."
+        },
+        "schedule_mode": { "enum": ["auto", "manual"] },
+        "progress": { "type": ["number", "null"], "minimum": 0, "maximum": 100 },
+        "dictionary": { "$ref": "#/$defs/dictionary" },
+        "predecessors": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/predecessor" },
+          "default": []
+        },
+        "owner": { "$ref": "#/$defs/owner" },
+        "children": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/node" },
+          "default": []
+        }
+      }
+    },
+    "predecessor": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref"],
+      "properties": {
+        "ref": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 64,
+          "description": "ref of the predecessor node."
+        },
+        "dep_type": {
+          "enum": ["fs", "ss", "ff", "sf"],
+          "default": "fs",
+          "description": "FS (Finish-to-Start), SS, FF, SF."
+        },
+        "lag_days": {
+          "type": "integer",
+          "default": 0,
+          "description": "Positive = Lag (delay), negative = Lead."
+        }
+      }
+    },
+    "dictionary": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Work dictionary.",
+      "properties": {
+        "definition": { "type": ["string", "null"] },
+        "deliverables": { "type": "array", "items": { "type": "string" }, "default": [] },
+        "acceptance_criteria": { "type": ["string", "null"] },
+        "assumptions": { "type": ["string", "null"] },
+        "constraints": { "type": ["string", "null"] },
+        "effort_estimate_hours": { "type": ["number", "null"], "minimum": 0 },
+        "cost_estimate_amount": { "type": ["number", "null"], "minimum": 0 },
+        "cost_currency": { "type": ["string", "null"], "minLength": 3, "maxLength": 3 },
+        "references": { "type": ["array", "null"], "items": { "type": "object" } }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "additionalProperties": false,
+      "description": "Assignee (one of the two). An email may reference someone not yet signed up (auto-assigned on signup).",
+      "properties": {
+        "user_id": { "type": ["string", "null"] },
+        "email": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

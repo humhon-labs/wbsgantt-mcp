@@ -1,0 +1,65 @@
+{
+  "schema_version": 1,
+  "mode": "project",
+  "meta": {
+    "code": "DEMO-WEB",
+    "name": "웹사이트 오픈 프로젝트",
+    "source_locale": "ko",
+    "currency": "KRW"
+  },
+  "root": {
+    "name": "웹사이트 오픈 프로젝트",
+    "ref": "root",
+    "children": [
+      {
+        "name": "기획",
+        "ref": "plan",
+        "children": [
+          {
+            "name": "요구사항 정의",
+            "ref": "req",
+            "duration_days": 5,
+            "dictionary": {
+              "definition": "이해관계자 요구사항을 수집·정리한다.",
+              "deliverables": ["요구사항 명세서"],
+              "acceptance_criteria": "PM 승인 완료"
+            }
+          },
+          {
+            "name": "화면 설계",
+            "ref": "design",
+            "duration_days": 5,
+            "predecessors": [{ "ref": "req", "dep_type": "fs" }]
+          }
+        ]
+      },
+      {
+        "name": "개발",
+        "ref": "dev",
+        "children": [
+          {
+            "name": "프론트엔드",
+            "ref": "fe",
+            "duration_days": 10,
+            "predecessors": [{ "ref": "design", "dep_type": "fs" }]
+          },
+          {
+            "name": "백엔드",
+            "ref": "be",
+            "duration_days": 10,
+            "predecessors": [{ "ref": "design", "dep_type": "ss", "lag_days": 2 }]
+          }
+        ]
+      },
+      {
+        "name": "오픈",
+        "ref": "launch",
+        "is_milestone": true,
+        "predecessors": [
+          { "ref": "fe", "dep_type": "fs" },
+          { "ref": "be", "dep_type": "fs" }
+        ]
+      }
+    ]
+  }
+}
