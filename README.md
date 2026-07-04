@@ -1,4 +1,4 @@
-<!-- Language: **English** · [한국어](README.ko.md) -->
+Language: **English** · [한국어](README.ko.md)
 
 # wbsgantt MCP
 

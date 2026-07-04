@@ -1,4 +1,4 @@
-<!-- Language: **English** · [한국어](troubleshooting.ko.md) -->
+Language: **English** · [한국어](troubleshooting.ko.md)
 
 # Troubleshooting
 

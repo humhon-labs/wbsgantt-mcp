@@ -1,4 +1,4 @@
-<!-- Language: **English** · [한국어](prompts.ko.md) -->
+Language: **English** · [한국어](prompts.ko.md)
 
 # Ready-to-use prompts
 

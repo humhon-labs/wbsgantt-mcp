@@ -1,4 +1,4 @@
-<!-- Language: **English** · [한국어](connect.ko.md) -->
+Language: **English** · [한국어](connect.ko.md)
 
 # Connecting from each client
 

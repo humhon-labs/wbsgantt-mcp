@@ -1,4 +1,4 @@
-<!-- 언어: [English](troubleshooting.md) · **한국어** -->
+언어: [English](troubleshooting.md) · **한국어**
 
 # 문제 해결
 

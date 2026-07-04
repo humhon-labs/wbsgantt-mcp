@@ -1,4 +1,4 @@
-<!-- 언어: [English](prompts.md) · **한국어** -->
+언어: [English](prompts.md) · **한국어**
 
 # 실전 프롬프트 모음
 

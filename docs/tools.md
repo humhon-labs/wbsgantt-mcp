@@ -1,4 +1,4 @@
-<!-- Language: **English** · [한국어](tools.ko.md) -->
+Language: **English** · [한국어](tools.ko.md)
 
 # Tool catalog
 

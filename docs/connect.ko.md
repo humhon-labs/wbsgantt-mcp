@@ -1,4 +1,4 @@
-<!-- 언어: [English](connect.md) · **한국어** -->
+언어: [English](connect.md) · **한국어**
 
 # 클라이언트별 연결 방법
 

@@ -1,4 +1,4 @@
-<!-- 언어: [English](tools.md) · **한국어** -->
+언어: [English](tools.md) · **한국어**
 
 # 도구 카탈로그
 
