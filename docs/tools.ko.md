@@ -21,12 +21,12 @@ LLM은 연결 시 서버에서 이 도구 목록과 각 도구의 설명·입력
 |---|---|---|
 | `import_wbs_project` | 입력 문서로 새 프로젝트+WBS를 한 번에 생성 | `document` (→ [입력 규격](../examples/wbs-input.schema.json)) |
 | `create_wbs_node` | 기존 노드 아래에 자식 노드 1개 생성 | `parent_id`, `name`, `is_milestone`, `duration_days` |
-| `update_wbs_node` | 노드 필드 단위 갱신 | `node_id`, `fields`(name·weight·progress·is_milestone·duration_days·start_planned·schedule_mode), `expected_etag`(선택) |
-| `move_wbs_node` | 노드를 (자손과 함께) 다른 부모/위치로 이동 | `node_id`, `new_parent_id`, `before_id`/`after_id`(선택), `expected_etag`(선택) |
+| `update_wbs_node` | 노드 필드 단위 갱신 | `node_id`<br>`fields` (name · weight · progress · is_milestone · duration_days · start_planned · schedule_mode)<br>`expected_etag`(선택) |
+| `move_wbs_node` | 노드를 (자손과 함께) 다른 부모/위치로 이동 | `node_id`, `new_parent_id`<br>`before_id`/`after_id`(선택)<br>`expected_etag`(선택) |
 | `delete_wbs_node` | 노드+하위 트리 삭제(soft delete) | `node_id`, `expected_etag`(선택) |
 | `add_wbs_dependency` | 두 노드 사이 전제작업 생성 | `predecessor_id`, `successor_id`, `dep_type`(fs/ss/ff/sf), `lag_days` |
 | `remove_wbs_dependency` | 전제작업 1건 삭제 | `dependency_id` |
-| `set_wbs_dictionary` | 작업 정의서 필드 단위 갱신 | `node_id`, `fields`(definition·deliverables·acceptance_criteria·assumptions·constraints·effort_estimate_hours·cost_estimate_amount·cost_currency·references), `expected_etag`(선택) |
+| `set_wbs_dictionary` | 작업 정의서 필드 단위 갱신 | `node_id`<br>`fields` (definition · deliverables · acceptance_criteria · assumptions · constraints · effort_estimate_hours · cost_estimate_amount · cost_currency · references)<br>`expected_etag`(선택) |
 
 ## 도메인 규칙 (서버가 자동 검증)
 

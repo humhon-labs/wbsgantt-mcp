@@ -21,12 +21,12 @@ On connect, the LLM automatically receives this tool list along with each tool's
 |---|---|---|
 | `import_wbs_project` | Create a new project + WBS from one document | `document` (→ [input spec](../examples/wbs-input.schema.json)) |
 | `create_wbs_node` | Create one child node under an existing node | `parent_id`, `name`, `is_milestone`, `duration_days` |
-| `update_wbs_node` | Field-level node update | `node_id`, `fields` (name, weight, progress, is_milestone, duration_days, start_planned, schedule_mode), `expected_etag` (optional) |
-| `move_wbs_node` | Move a node (with its subtree) to another parent/position | `node_id`, `new_parent_id`, `before_id`/`after_id` (optional), `expected_etag` (optional) |
+| `update_wbs_node` | Field-level node update | `node_id`<br>`fields` (name, weight, progress, is_milestone, duration_days, start_planned, schedule_mode)<br>`expected_etag` (optional) |
+| `move_wbs_node` | Move a node (with its subtree) to another parent/position | `node_id`, `new_parent_id`<br>`before_id`/`after_id` (optional)<br>`expected_etag` (optional) |
 | `delete_wbs_node` | Delete a node + its subtree (soft delete) | `node_id`, `expected_etag` (optional) |
 | `add_wbs_dependency` | Create a predecessor link between two nodes | `predecessor_id`, `successor_id`, `dep_type` (fs/ss/ff/sf), `lag_days` |
 | `remove_wbs_dependency` | Delete one dependency | `dependency_id` |
-| `set_wbs_dictionary` | Field-level dictionary update | `node_id`, `fields` (definition, deliverables, acceptance_criteria, assumptions, constraints, effort_estimate_hours, cost_estimate_amount, cost_currency, references), `expected_etag` (optional) |
+| `set_wbs_dictionary` | Field-level dictionary update | `node_id`<br>`fields` (definition, deliverables, acceptance_criteria, assumptions, constraints, effort_estimate_hours, cost_estimate_amount, cost_currency, references)<br>`expected_etag` (optional) |
 
 ## Domain rules (enforced server-side)
 
