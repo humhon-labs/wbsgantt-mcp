@@ -17,7 +17,7 @@ Talk to [wbsgantt](https://wbsgantt.com) from **LLM clients like Claude and Chat
 ## 🚀 Connect in 3 steps (no install)
 
 1. **Issue a token** — sign in to wbsgantt → profile menu (top right) → **Account settings → API tokens**. Choose a scope (*read-only* or *read + write*). The token is shown **only once at creation** — copy it.
-2. **Register the connector** — add the MCP server URL and token to your LLM client.
+2. **Register the connector** — add the MCP server URL to your LLM client, and pass the token as a **Bearer token** (`Authorization: Bearer <your-token>` header, or the client's token field).
 
    ```
    https://api.wbsgantt.com/mcp/
@@ -42,7 +42,7 @@ See [docs/connect.md](docs/connect.md) for per-client setup.
 ## 🔒 Security & permissions
 
 - The LLM acts **as the user who issued the token** — it can only see and edit the projects you can access on the web.
-- Tokens **expire 90 days** after issuance; up to 10 per user. **Revoke** immediately from the account screen if a token may be leaked.
+- Tokens start with `bwic_pat_` and **expire 90 days** after issuance; up to 10 per user. **Revoke** immediately from the account screen if a token may be leaked.
 - wbsgantt rules (milestones have zero duration, dependency cycles are blocked, the 100% Rule, etc.) are enforced server-side — invalid edits are rejected with an error code and the LLM self-corrects.
 
 ## 💬 Feedback
