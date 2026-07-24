@@ -40,6 +40,13 @@ After connecting, just ask in natural language — the LLM picks the right tool.
 
 - "Update the progress of 'Screen design' to 40%" (enter on leaf tasks; parents roll up automatically)
 
+## Check schedule health
+
+- "Is the schedule for project ○○ healthy? Check the FS ratio, lags, and fixed start dates."
+- "Review project ○○'s schedule quality and tell me what to fix."
+
+> Your client may also surface a **Plan a project schedule** prompt template (provided by the server) — selecting it starts a full, logic-driven plan (FS-first, minimal lags, no hard-coded dates).
+
 ---
 
 > Tip: if the LLM breaks a rule (zero-duration milestones, no cycles, the 100% Rule, etc.), the server returns an error and the LLM fixes it and retries. For hard-to-undo actions like deletion, confirm the target first.

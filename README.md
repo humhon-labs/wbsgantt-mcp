@@ -13,6 +13,7 @@ Talk to [wbsgantt](https://wbsgantt.com) from **LLM clients like Claude and Chat
 - "Add a 'Design' phase under ○○ with three sub-tasks" — add / edit / move / delete nodes
 - "Make API design start only after screen design finishes" — predecessors (FS/SS/FF/SF, Lead/Lag)
 - "Fill in the definition, deliverables, and acceptance criteria for this task" — work dictionary
+- "Is this project's schedule healthy?" — schedule quality check (FS ratio, lags, fixed dates)
 
 ## 🚀 Connect in 3 steps (no install)
 
@@ -43,7 +44,7 @@ See [docs/connect.md](docs/connect.md) for per-client setup.
 
 - The LLM acts **as the user who issued the token** — it can only see and edit the projects you can access on the web.
 - Tokens start with `bwic_pat_` and **expire 90 days** after issuance; up to 10 per user. **Revoke** immediately from the account screen if a token may be leaked.
-- wbsgantt rules (milestones have zero duration, dependency cycles are blocked, the 100% Rule, etc.) are enforced server-side — invalid edits are rejected with an error code and the LLM self-corrects.
+- Structural rules (milestones have zero duration, dependency cycles are blocked) are enforced server-side — invalid edits are rejected with an error code and the LLM self-corrects. Softer quality rules like the 100% Rule are surfaced by `get_schedule_health` so the LLM can review and fix them.
 
 ## 💬 Feedback
 

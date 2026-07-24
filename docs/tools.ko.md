@@ -14,6 +14,7 @@ LLM은 연결 시 서버에서 이 도구 목록과 각 도구의 설명·입력
 | `get_wbs_tree` | 프로젝트 WBS 트리 전체 (노드별 id·code·이름·타입·일정·진척·etag) | `project_id`, `max_depth`(선택) |
 | `list_wbs_dependencies` | 프로젝트의 모든 전제작업(종속성) 목록 | `project_id` |
 | `get_wbs_dictionary` | 노드의 작업 정의서(없으면 빈 정의서 반환) | `node_id` |
+| `get_schedule_health` | 일정 건강도 스코어카드(DCMA-lite: FS 비율·lag·lead·고정 시작일 leaf·논리 없는 leaf) + 규칙 위반(100% Rule·Dictionary 누락) + 권고 | `project_id` |
 
 ## 쓰기 (write)
 
