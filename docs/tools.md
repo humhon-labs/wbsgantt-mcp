@@ -14,6 +14,7 @@ On connect, the LLM automatically receives this tool list along with each tool's
 | `get_wbs_tree` | Full WBS tree (per node: id, code, name, type, schedule, progress, etag) | `project_id`, `max_depth` (optional) |
 | `list_wbs_dependencies` | All predecessors (dependencies) in a project | `project_id` |
 | `get_wbs_dictionary` | A node's work dictionary (returns an empty one if none) | `node_id` |
+| `get_schedule_health` | Schedule quality scorecard (DCMA-lite: FS ratio, lags, leads, fixed-date leaves, unlinked leaves) + rule violations (100% Rule, missing dictionary) + advisories | `project_id` |
 
 ## Write (`write`)
 
